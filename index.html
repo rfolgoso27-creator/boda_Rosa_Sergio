@@ -8,8 +8,8 @@
 <style>
   :root {
     --cream: #e5c268;
-    --sand: #e1903e;
-    --terracotta: #C4785A;
+    --sand: #fde097;
+    --terracotta: #e08253;
     --terracotta-light: #D4906F;
     --brown: #6B4A35;
     --dark: #2C1F17;
@@ -32,6 +32,12 @@
     overflow-x: hidden;
   }
 
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--terracotta);
+    outline-offset: 3px;
+  }
+
   /* ── NAV ── */
   nav {
     position: fixed;
@@ -52,6 +58,7 @@
     letter-spacing: 0.05em;
     color: var(--brown);
     font-style: italic;
+    white-space: nowrap;
   }
 
   .nav-links {
@@ -67,12 +74,13 @@
     text-transform: uppercase;
     color: var(--text-light);
     transition: color 0.3s;
+    white-space: nowrap;
   }
 
   .nav-links a:hover { color: var(--terracotta); }
 
-  /* Encabezado SIN FOTO */
-  /*#hero {
+  /* ── HERO ── */
+  #hero {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -80,22 +88,20 @@
     justify-content: center;
     position: relative;
     overflow: hidden;
-    background: var(--cream);
-  }*/
-  #hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+    background-image: url('encabezadoInvitacion.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 
-  /* IMAGEN DE FONDO */
-  background-image: url('encabezadoInvitacion.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  #hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(44,31,23,0.40), rgba(44,31,23,0.24)),
+      radial-gradient(circle at center, rgba(255,255,255,0.04), transparent 60%);
+    z-index: 0;
   }
 
   .hero-bg {
@@ -103,7 +109,8 @@
     inset: 0;
     background:
       radial-gradient(ellipse 60% 50% at 80% 20%, rgba(196,120,90,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(184,151,90,0.1) 0%, transparent 60%);
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(184,151,90,0.10) 0%, transparent 60%);
+    z-index: 1;
   }
 
   .hero-ornament {
@@ -111,23 +118,30 @@
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    border: 1px solid rgba(184,151,90,0.15);
-    top: 50%; left: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     animation: pulse-ring 6s ease-in-out infinite;
+    z-index: 1;
+    opacity: 0.22;
   }
+
   .hero-ornament:nth-child(2) {
-    width: 750px; height: 750px;
+    width: 750px;
+    height: 750px;
     animation-delay: -2s;
   }
+
   .hero-ornament:nth-child(3) {
-    width: 900px; height: 900px;
+    width: 900px;
+    height: 900px;
     animation-delay: -4s;
   }
 
   @keyframes pulse-ring {
-    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.02); }
+    0%, 100% { opacity: 0.18; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.30; transform: translate(-50%, -50%) scale(1.02); }
   }
 
   .hero-content {
@@ -135,6 +149,7 @@
     position: relative;
     z-index: 2;
     animation: fadeUp 1.2s ease both;
+    padding: 0 20px;
   }
 
   @keyframes fadeUp {
@@ -146,7 +161,7 @@
     font-size: 0.7rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: rgba(255,255,255,0.88);
     margin-bottom: 24px;
   }
 
@@ -155,16 +170,17 @@
     font-size: clamp(4rem, 10vw, 8rem);
     font-weight: 300;
     line-height: 0.9;
-    color: var(--dark);
+    color: var(--white);
     font-style: italic;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.22);
   }
 
-  .hero-names span { color: var(--terracotta); }
+  .hero-names span { color: #f1d18a; }
 
   .hero-ampersand {
     display: block;
     font-size: clamp(5rem, 13vw, 10rem);
-    color: var(--gold);
+    color: #f1d18a;
     line-height: 1;
   }
 
@@ -173,7 +189,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--text-light);
+    color: rgba(255,255,255,0.90);
   }
 
   .hero-scroll {
@@ -186,14 +202,15 @@
     font-size: 0.65rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: rgba(255,255,255,0.78);
     animation: fadeUp 1.2s 0.6s ease both;
+    z-index: 2;
   }
 
   .scroll-line {
     width: 1px;
     height: 50px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
+    background: linear-gradient(to bottom, #f1d18a, transparent);
     animation: grow-line 2s ease-in-out infinite;
   }
 
@@ -205,6 +222,7 @@
   /* ── SECTIONS ── */
   section {
     padding: 100px 24px;
+    scroll-margin-top: 96px;
   }
 
   .container {
@@ -258,8 +276,6 @@
     margin-top: 56px;
     align-items: start;
   }
-
-  .venue-info { }
 
   .venue-detail {
     display: flex;
@@ -328,147 +344,96 @@
     text-transform: uppercase;
     text-decoration: none;
     border-radius: 2px;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.3s;
     box-shadow: 0 4px 20px rgba(196,120,90,0.4);
   }
 
-  .map-overlay-btn:hover { background: var(--brown); }
+  .map-overlay-btn:hover {
+    background: var(--brown);
+    transform: translateY(-2px);
+  }
 
   /* ── RSVP ── */
   #rsvp { background: var(--dark); color: var(--cream); }
   #rsvp .section-title { color: var(--cream); }
-  #rsvp .section-text { color: rgba(249,244,238,0.7); }
+  #rsvp .section-text { color: rgba(249,244,238,0.76); }
 
-  .rsvp-form {
+  .rsvp-card {
     margin-top: 56px;
-    display: grid;
-    gap: 28px;
-  }
-
-  .form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .form-group label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    background: rgba(249,244,238,0.07);
-    border: 1px solid rgba(184,151,90,0.3);
-    color: var(--cream);
-    padding: 14px 18px;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 300;
-    border-radius: 2px;
-    transition: border-color 0.3s;
-    outline: none;
-  }
-
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: var(--gold);
-  }
-
-  .form-group select option {
-    background: var(--dark);
-    color: var(--cream);
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-
-  .attendance-toggle {
-    display: flex;
-    gap: 0;
-    border: 1px solid rgba(184,151,90,0.3);
-    border-radius: 2px;
+    max-width: 680px;
+    background:
+      linear-gradient(180deg, rgba(249,244,238,0.08), rgba(249,244,238,0.04));
+    border: 1px solid rgba(184,151,90,0.28);
+    padding: 48px 38px;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 0 18px 60px rgba(0,0,0,0.16);
+    position: relative;
     overflow: hidden;
   }
 
-  .attendance-toggle input { display: none; }
+  .rsvp-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+    opacity: 0.9;
+  }
 
-  .attendance-toggle label {
-    flex: 1;
-    text-align: center;
-    padding: 14px;
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
+  .rsvp-card-icon {
+    font-size: 2.4rem;
+    margin-bottom: 18px;
+  }
+
+  .rsvp-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 14px;
+  }
+
+  .rsvp-card p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: rgba(249,244,238,0.76);
+    max-width: 500px;
+    margin: 0 auto 24px;
+  }
+
+  .rsvp-link {
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 6px;
+  }
+
+  .rsvp-secondary-link {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: rgba(249,244,238,0.72);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(249,244,238,0.25);
+    transition: color 0.3s, border-color 0.3s;
+  }
+
+  .rsvp-secondary-link:hover {
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  .rsvp-note {
+    margin-top: 18px !important;
+    margin-bottom: 0 !important;
+    font-size: 0.76rem !important;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    cursor: pointer;
-    color: rgba(249,244,238,0.5);
-    transition: all 0.3s;
-    border-right: 1px solid rgba(184,151,90,0.3);
+    color: rgba(249,244,238,0.45) !important;
   }
 
-  .attendance-toggle label:last-of-type { border-right: none; }
-
-  .attendance-toggle input:checked + label {
-    background: var(--terracotta);
-    color: var(--white);
-  }
-
-  /* Alergias checkboxes */
-  .alergia-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-
-  .alergia-check {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-  }
-
-  .alergia-check input { display: none; }
-
-  .alergia-check .check-box {
-    width: 18px; height: 18px;
-    border: 1px solid rgba(184,151,90,0.4);
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    flex-shrink: 0;
-  }
-
-  .alergia-check input:checked ~ .check-box {
-    background: var(--terracotta);
-    border-color: var(--terracotta);
-  }
-
-  .alergia-check input:checked ~ .check-box::after {
-    content: '✓';
-    font-size: 0.65rem;
-    color: white;
-  }
-
-  .alergia-check span:last-child {
-    font-size: 0.82rem;
-    color: rgba(249,244,238,0.7);
-  }
-
-  /* Submit button */
   .btn-primary {
     background: var(--terracotta);
     color: var(--white);
@@ -482,7 +447,6 @@
     border-radius: 2px;
     transition: all 0.3s;
     box-shadow: 0 4px 20px rgba(196,120,90,0.3);
-    justify-self: start;
   }
 
   .btn-primary:hover {
@@ -525,12 +489,14 @@
   }
 
   .song-info { flex: 1; }
+
   .song-info strong {
     display: block;
     font-weight: 400;
     font-size: 0.92rem;
     color: var(--text);
   }
+
   .song-info span {
     font-size: 0.78rem;
     color: var(--text-light);
@@ -545,6 +511,7 @@
     transition: color 0.2s;
     padding: 4px;
   }
+
   .song-delete:hover { color: var(--terracotta); }
 
   .song-add-form {
@@ -625,7 +592,11 @@
     transition: transform 0.3s;
   }
 
-  .aport-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(44,31,23,0.1); }
+  .aport-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(44,31,23,0.1);
+  }
+
   .aport-card:hover::before { transform: scaleX(1); }
 
   .aport-icon { font-size: 2.2rem; margin-bottom: 16px; }
@@ -667,7 +638,7 @@
     color: white;
   }
 
-  /* Modal aportación */
+  /* ── MODAL ── */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -717,14 +688,6 @@
     line-height: 1.7;
   }
 
-  .modal .form-group label { color: var(--gold); }
-  .modal .form-group input {
-    background: var(--cream);
-    border: 1px solid var(--sand);
-    color: var(--text);
-  }
-  .modal .form-group input:focus { border-color: var(--terracotta); }
-
   .account-box {
     background: var(--cream);
     border: 1px solid var(--sand);
@@ -750,6 +713,7 @@
     border-radius: 2px;
     transition: all 0.2s;
   }
+
   .copy-btn:hover { border-color: var(--terracotta); color: var(--terracotta); }
   .copy-btn.copied { border-color: #4CAF50; color: #4CAF50; }
 
@@ -803,7 +767,7 @@
     transition: max-height 0.4s ease;
   }
 
-  .faq-item.open .faq-answer { max-height: 300px; }
+  .faq-item.open .faq-answer { max-height: 320px; }
 
   .faq-answer-inner {
     padding: 0 28px 24px;
@@ -812,6 +776,7 @@
     line-height: 1.9;
     border-top: 1px solid var(--sand);
     padding-top: 20px;
+    white-space: pre-line;
   }
 
   /* ── FOOTER ── */
@@ -847,35 +812,62 @@
     transition: transform 0.4s ease;
     pointer-events: none;
   }
+
   .toast.show { transform: translateX(-50%) translateY(0); }
 
-  /* ── DIVIDER ── */
-  .ornament-divider {
-    text-align: center;
-    margin: 0 auto 56px;
-    color: var(--gold);
-    font-size: 1.5rem;
-    letter-spacing: 0.4em;
-    opacity: 0.6;
-  }
-
-  /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
-    nav { padding: 14px 20px; }
-    .nav-links { display: none; }
+    nav {
+      padding: 14px 16px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      width: 100%;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-links a {
+      font-size: 0.65rem;
+    }
+
     .venue-grid { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-    .apert-grid { grid-template-columns: 1fr; }
     .aport-grid { grid-template-columns: 1fr; }
     .song-add-form { grid-template-columns: 1fr; }
-    .song-add-form input:first-child { border-radius: 2px 2px 0 0; border-right: 1px solid var(--sand); border-bottom: none; }
-    .song-add-form input:nth-child(2) { border-bottom: none; border-right: 1px solid var(--sand); }
-    .song-add-form button { border-radius: 0 0 2px 2px; padding: 16px; }
-    .alergia-grid { grid-template-columns: 1fr 1fr; }
-    .modal { padding: 36px 24px; }
-    section { padding: 72px 20px; }
-  }
 
+    .song-add-form input:first-child {
+      border-radius: 2px 2px 0 0;
+      border-right: 1px solid var(--sand);
+      border-bottom: none;
+    }
+
+    .song-add-form input:nth-child(2) {
+      border-bottom: none;
+      border-right: 1px solid var(--sand);
+    }
+
+    .song-add-form button {
+      border-radius: 0 0 2px 2px;
+      padding: 16px;
+    }
+
+    .modal { padding: 36px 24px; }
+    .rsvp-card { padding: 36px 24px; }
+    section { padding: 72px 20px; scroll-margin-top: 110px; }
+
+    .hero-scroll {
+      bottom: 28px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -893,364 +885,279 @@
   </ul>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-ornament"></div>
-  <div class="hero-ornament"></div>
-  <div class="hero-ornament"></div>
+<main>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-ornament"></div>
+    <div class="hero-ornament"></div>
+    <div class="hero-ornament"></div>
 
-  <div class="hero-content">
-    <p class="hero-date">04 · Octubre · 2026</p>
-    <h1 class="hero-names">
-      Rosa
-      <span class="hero-ampersand">&</span>
-      Sergio
-    </h1>
-    <p class="hero-subtitle">¡Nos casamos! · Granada · España</p>
-  </div>
+    <div class="hero-content">
+      <p class="hero-date">04 · Octubre · 2026</p>
+      <h1 class="hero-names">
+        Rosa
+        <span class="hero-ampersand">&</span>
+        Sergio
+      </h1>
+      <p class="hero-subtitle">¡Nos casamos! · Granada · España</p>
+    </div>
 
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    Desplazar
-  </div>
-</section>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Desplazar
+    </div>
+  </section>
 
+  <!-- LUGAR -->
+  <section id="lugar">
+    <div class="container">
+      <p class="section-label">01 — Celebración</p>
+      <h2 class="section-title">Un poquito de nuestra historia</h2>
+      <p class="section-text">Después de más de 6 años haciendo muchos kilómetros entre Salamanca y Granada, muchas risas, muchas buenas experiencias, alguna mala…, muchos paseos a Kuma, mudanzas, cambios de ciudad y trabajo… hemos decidido celebrarlo!! Pero sin ser demasiado formales 🥳 solo lo que la ley exige 🤭<br>
+      Queremos pasar un día a nuestra manera, un poquito de seriedad y mucha diversión! <br>
+      Si estás leyendo esto, es porque eres parte importante del plan ✨</p>
 
-<!-- LUGAR -->
-<section id="lugar">
-  <div class="container">
-    <p class="section-label">01 — Celebración</p>
-    <h2 class="section-title">El lugar de nuestra historia</h2>
-    <p class="section-text">Nos casamos en un rincón mágico de Granada, Huerta del Sello es una exclusiva finca del siglo XIX en la Vega de Granada que combina arquitectura neoclásica con jardines románticos. Ofrece un entorno íntimo con vistas privilegiadas a Sierra Nevada.</p>
-
-    <div class="venue-grid">
-      <div class="venue-info">
-        <div class="venue-detail">
-          <div class="venue-icon">🌿</div>
-          <div class="venue-detail-text">
-            <h4>Ceremonia y Celebración</h4>
-            <p><strong>Huerta del Sello</strong><br>Granada</p>
+      <div class="venue-grid">
+        <div class="venue-info">
+          <div class="venue-detail">
+            <div class="venue-icon">🌿</div>
+            <div class="venue-detail-text">
+              <h4>Ceremonia y Celebración</h4>
+              <p><strong>Huerta del Sello</strong><br>Granada</p>
+            </div>
+          </div>
+          <div class="venue-detail">
+            <div class="venue-icon">🕐</div>
+            <div class="venue-detail-text">
+              <h4>Horario</h4>
+              <p>Apertura de puertas: 13:00 h<br>Ceremonia: 13:30 h<br>Celebración hasta las 21:00 h</p>
+            </div>
+          </div>
+          <div class="venue-detail">
+            <div class="venue-icon">🌡️</div>
+            <div class="venue-detail-text">
+              <h4>Dress code</h4>
+              <p>Inexistente. Si el tiempo nos lo permite, el evento será al aire libre. Se recomienda calzado cómodo para el jardín y patio.</p>
+            </div>
           </div>
         </div>
-        <div class="venue-detail">
-          <div class="venue-icon">🕐</div>
-          <div class="venue-detail-text">
-            <h4>Horario</h4>
-            <p>Ceremonia: 12:30 h<br>Aperitivo: 13:30 h<br>Banquete: 15:00 h<br>Celebración hasta las 02:00 h</p>
-          </div>
-        </div>
-        <div class="venue-detail">
-          <div class="venue-icon">🌡️</div>
-          <div class="venue-detail-text">
-            <h4>Dress code</h4>
-            <p>Inexistente. Si el tiempo nos los permite, el evento será al aire libre. Se recomienda calzado cómodo para el jardín y patio.</p>
-          </div>
-        </div>
-      </div>
 
-      <div>
-        <div style="background: var(--sand); border-radius: 4px; overflow: hidden; height: 100%; min-height: 360px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; padding: 40px; text-align: center;">
-          <div style="font-size: 3rem;">🌺</div>
-          <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; color: var(--dark);">"El amor no se mira, es lo que nos hace ver"</p>
-          <p style="font-size: 0.78rem; color: var(--text-light); letter-spacing: 0.1em;">— Antoine de Saint-Exupéry</p>
+        <div>
+          <div style="background: var(--sand); border-radius: 4px; overflow: hidden; height: 100%; min-height: 360px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; padding: 40px; text-align: center;">
+            <div style="font-size: 3rem;">🌺</div>
+            <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; color: var(--dark);">"El amor no se mira, es lo que nos hace ver"</p>
+            <p style="font-size: 0.78rem; color: var(--text-light); letter-spacing: 0.1em;">— Antoine de Saint-Exupéry</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- MAPA -->
+  <section id="mapa">
+    <div class="container">
+      <p class="section-label">02 — Ubicación</p>
+      <h2 class="section-title">Cómo llegar</h2>
 
-<!-- MAPA -->
-<section id="mapa">
-  <div class="container">
-    <p class="section-label">02 — Ubicación</p>
-    <h2 class="section-title">Cómo llegar</h2>
-    
-    <div class="map-container">
-      <!-- Reemplaza el src con el iframe de Google Maps de tu ubicación -->
-      <iframe
-        src="https://maps.app.goo.gl/gDBmK3yXBYFLkFNPA"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-      <a href="https://maps.app.goo.gl/gDBmK3yXBYFLkFNPA" target="_blank" class="map-overlay-btn">
-        Abrir en Google Maps →
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- RSVP -->
-<section id="rsvp">
-  <div class="container">
-    <p class="section-label" style="color: var(--gold-light);">03 — Confirmación</p>
-    <h2 class="section-title">¿Nos acompañas?</h2>
-    <p class="section-text">Por favor, confirma tu asistencia antes del <strong style="color: var(--gold);">05 de Septiembre de 2026</strong>. Tu respuesta nos ayuda a preparar todo con cariño.</p>
-
-    <form class="rsvp-form" onsubmit="submitRSVP(event)">
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>Nombre</label>
-          <input type="text" id="nombre" placeholder="Tu nombre" required>
-        </div>
-        <div class="form-group">
-          <label>Apellidos</label>
-          <input type="text" id="apellidos" placeholder="Tus apellidos" required>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="email" placeholder="tu@email.com" required>
-        </div>
-        <div class="form-group">
-          <label>Teléfono</label>
-          <input type="tel" id="telefono" placeholder="+34 600 000 000">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>¿Asistirás a la boda?</label>
-        <div class="attendance-toggle">
-          <input type="radio" name="asistencia" id="asiste-si" value="si">
-          <label for="asiste-si">✓ Sí, allí estaré</label>
-          <input type="radio" name="asistencia" id="asiste-no" value="no">
-          <label for="asiste-no">✗ Lo siento, no podré</label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Número de acompañantes</label>
-        <select id="acompanantes">
-          <option value="0">Solo yo</option>
-          <option value="1">1 acompañante</option>
-          <option value="2">2 acompañantes</option>
-          <option value="3">3 acompañantes</option>
-          <option value="4">4 o más acompañantes</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Alergias e intolerancias alimentarias</label>
-        <div class="alergia-grid">
-          <label class="alergia-check">
-            <input type="checkbox" name="alergia" value="gluten">
-            <span class="check-box"></span>
-            <span>Gluten</span>
-          </label>
-          <label class="alergia-check">
-            <input type="checkbox" name="alergia" value="lactosa">
-            <span class="check-box"></span>
-            <span>Lactosa</span>
-          </label>
-          <label class="alergia-check">
-            <input type="checkbox" name="alergia" value="marisco">
-            <span class="check-box"></span>
-            <span>Marisco</span>
-          </label>
-          <label class="alergia-check">
-            <input type="checkbox" name="alergia" value="frutos-secos">
-            <span class="check-box"></span>
-            <span>Frutos secos</span>
-          </label>
-          <label class="alergia-check">
-            <input type="checkbox" name="alergia" value="huevo">
-            <span class="check-box"></span>
-            <span>Huevo</span>
-          </label>
-          <label class="alergia-check">
-            <input type="checkbox" name="alergia" value="soja">
-            <span class="check-box"></span>
-            <span>Soja</span>
-          </label>
-          <label class="alergia-check">
-            <input type="checkbox" name="alergia" value="pescado">
-            <span class="check-box"></span>
-            <span>Pescado</span>
-          </label>
-          <label class="alergia-check">
-            <input type="checkbox" name="alergia" value="vegetariano">
-            <span class="check-box"></span>
-            <span>Vegetariano</span>
-          </label>
-          <label class="alergia-check">
-            <input type="checkbox" name="alergia" value="vegano">
-            <span class="check-box"></span>
-            <span>Vegano</span>
-          </label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Otras alergias o necesidades especiales</label>
-        <textarea id="otras-alergias" placeholder="Cuéntanos si tienes alguna otra alergia, intolerancia o necesidad especial que debamos conocer..."></textarea>
-      </div>
-
-      <div class="form-group">
-        <label>Mensaje para los novios (opcional)</label>
-        <textarea id="mensaje" placeholder="¿Quieres dejarnos algún mensaje especial?"></textarea>
-      </div>
-
-      <button type="submit" class="btn-primary">Confirmar asistencia →</button>
-
-    </form>
-  </div>
-</section>
-
-
-<!-- CANCIONES -->
-<section id="canciones">
-  <div class="container">
-    <p class="section-label">04 — Música</p>
-    <h2 class="section-title">¿Qué canción no puede faltar?</h2>
-    <p class="section-text">Ayúdanos a crear la banda sonora perfecta para este día. Añade las canciones que quieres escuchar y haremos lo posible por incluirlas.</p>
-
-    <div class="songs-list" id="songsList">
-      <!-- canciones de ejemplo -->
-    </div>
-
-    <div style="margin-top: 28px;">
-      <div class="song-add-form">
-        <input type="text" id="songTitle" placeholder="Título de la canción" autocomplete="off">
-        <input type="text" id="songArtist" placeholder="Artista / Grupo" autocomplete="off">
-        <button onclick="addSong()" title="Añadir canción">+</button>
-      </div>
-      <p style="margin-top: 12px; font-size: 0.78rem; color: var(--text-light);">Introduce el título y el artista y pulsa + para añadir</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- APORTACIONES -->
-<section id="aportaciones">
-  <div class="container">
-    <p class="section-label">05 — Regalo</p>
-    <h2 class="section-title">Vuestra aportación</h2>
-    <p class="section-text">Si quieres tener un detalle, antes de nada, MIL GRACIAS. De veras te lo agradecemos muchísimo. Lo que más nos ayudará en este momento es una pequeña contribución para lo que sea que venga de aquí en adelante.</p>
-
-    <div class="aport-grid">
-      <div class="aport-card" onclick="openModal('bizum')">
-        <div class="aport-icon">📱</div>
-        <h3>Bizum</h3>
-        <p>La forma más rápida y sencilla de hacernos llegar tu aportación desde el móvil.</p>
-        <button class="btn-aport">Ver número →</button>
-      </div>
-
-      <div class="aport-card" onclick="openModal('transferencia')">
-        <div class="aport-icon">🏦</div>
-        <h3>Transferencia</h3>
-        <p>Realiza una transferencia bancaria con los datos de nuestra cuenta.</p>
-        <button class="btn-aport">Ver datos →</button>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.3720645808266!2d-3.630976924326308!3d37.167627972144565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd71fc893bf850db%3A0x71683dc7a592441b!2sHuerta%20del%20Sello!5e0!3m2!1ses-419!2ses!4v1775670411287!5m2!1ses-419!2ses"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <a href="https://maps.app.goo.gl/gDBmK3yXBYFLkFNPA" target="_blank" rel="noopener noreferrer" class="map-overlay-btn">
+          Abrir en Google Maps →
+        </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- RSVP -->
+  <section id="rsvp">
+    <div class="container">
+      <p class="section-label" style="color: var(--gold-light);">03 — Confirmación</p>
+      <h2 class="section-title">¿Nos acompañas?</h2>
+      <p class="section-text">
+        Para organizarlo todo con cariño, te agradeceremos que completes tu confirmación
+        antes del <strong style="color: var(--gold);">01 de septiembre de 2026</strong>.
+      </p>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <p class="section-label">06 — Preguntas frecuentes</p>
-    <h2 class="section-title">Todo lo que necesitas saber</h2>
+      <div class="rsvp-card">
+        <div class="rsvp-card-icon">✉️</div>
+        <h3>Formulario de confirmación</h3>
+        <p>
+          Hemos preparado un formulario muy breve para que puedas indicarnos tu asistencia,
+          acompañantes, alergias o cualquier detalle importante.
+        </p>
 
-    <div class="faq-list" id="faqList">
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfy7xAhVTnxhPvpEcUcvCg55FbhDhqckyePd0fMB4yeapI9mQ/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary rsvp-link"
+        >
+          Abrir formulario de confirmación →
+        </a>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          ¿Hay aparcamiento en el lugar de celebración?
-          <span class="faq-chevron">▾</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Toíto el que quieras.
-          </div>
-        </div>
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfy7xAhVTnxhPvpEcUcvCg55FbhDhqckyePd0fMB4yeapI9mQ/viewform"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rsvp-secondary-link"
+        >
+          Si no se abre, pulsa aquí
+        </a>
+
+        <p class="rsvp-note">Se abrirá en una nueva pestaña</p>
       </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          ¿Puedo llevar acompañante?
-          <span class="faq-chevron">▾</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Si tienes pareja, te hemos invitado y no te hemos dicho na malo de ella, adelante comandante.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          ¿Habrá transporte organizado?
-          <span class="faq-chevron">▾</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Organizaremos un servicio de autobús desde el centro de Granada para ir y volver. Los detalles exactos de las ubicaciones y de los horarios os llegarán por correo próximamente.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          ¿Qué debo llevar o cómo vestir?
-          <span class="faq-chevron">▾</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Elegantes ya sois. Venid cómodos, alegres, con ganas de comer y pasar un gran día. La celebración tendrá lugar al aire libre en un jardín y patio andaluz, por lo que sí recomendamos especialmente calzado cómodo para caminar sobre césped y adoquines.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          ¿Hay hoteles recomendados cerca?
-          <span class="faq-chevron">▾</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Sí. Os recomendamos el Parador de Granada (dentro de la Alhambra), Hotel Alhambra Palace, o varios carmen-hoteles boutique en el Albaicín. Reservad con antelación ya que junio es temporada alta en Granada.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          ¿A qué hora debo llegar?
-          <span class="faq-chevron">▾</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-           Un tipo decía, "Un mago nunca llega tarde, Frodo Bolsón, ni pronto; llega exactamente cuando se lo propone"... pues eso, te proponemos que llegues unos 20 minutos antes de la ceremonia. 
-Soy el novio y también quiero que me veáis llegar, que para un día que puedo pedir...eah, po pido.
-PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
-
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          ¿Cómo confirmo mi asistencia o la cancelo?
-          <span class="faq-chevron">▾</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Puedes confirmar o anular tu asistencia usando el formulario de esta misma página (sección "¿Nos acompañas?"). La fecha límite para confirmaciones es el 05 de Septiembre de 2026. Si necesitas cambiar algo después, escríbenos directamente.
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- CANCIONES -->
+  <section id="canciones">
+    <div class="container">
+      <p class="section-label">04 — Música</p>
+      <h2 class="section-title">¿Qué canción no puede faltar?</h2>
+      <p class="section-text">Ayúdanos a crear la banda sonora perfecta para este día. Añade las canciones que quieres escuchar y haremos lo posible por incluirlas.</p>
+
+      <div class="songs-list" id="songsList"></div>
+
+      <div style="margin-top: 28px;">
+        <div class="song-add-form">
+          <input type="text" id="songTitle" placeholder="Título de la canción" autocomplete="off">
+          <input type="text" id="songArtist" placeholder="Artista / Grupo" autocomplete="off">
+          <button type="button" onclick="addSong()" title="Añadir canción" aria-label="Añadir canción">+</button>
+        </div>
+        <p style="margin-top: 12px; font-size: 0.78rem; color: var(--text-light);">Introduce el título y el artista y pulsa + para añadir</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APORTACIONES -->
+  <section id="aportaciones">
+    <div class="container">
+      <p class="section-label">05 — Regalo</p>
+      <h2 class="section-title">Vuestra aportación</h2>
+      <p class="section-text">Si quieres tener un detalle, antes de nada, MIL GRACIAS. De veras te lo agradecemos muchísimo. Lo que más nos ayudará en este momento es una pequeña contribución para lo que sea que venga de aquí en adelante.</p>
+
+      <div class="aport-grid">
+        <div class="aport-card" onclick="openModal('bizum')">
+          <div class="aport-icon">📱</div>
+          <h3>Bizum</h3>
+          <p>La forma más rápida y sencilla de hacernos llegar tu aportación desde el móvil.</p>
+          <button type="button" class="btn-aport">Ver número →</button>
+        </div>
+
+        <div class="aport-card" onclick="openModal('transferencia')">
+          <div class="aport-icon">🏦</div>
+          <h3>Transferencia</h3>
+          <p>Realiza una transferencia bancaria con los datos de nuestra cuenta.</p>
+          <button type="button" class="btn-aport">Ver datos →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <p class="section-label">06 — Preguntas frecuentes</p>
+      <h2 class="section-title">Todo lo que necesitas saber</h2>
+
+      <div class="faq-list" id="faqList">
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" onclick="toggleFaq(this)">
+            ¿Hay aparcamiento en el lugar de celebración?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Toíto el que quieras.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" onclick="toggleFaq(this)">
+            ¿Puedo llevar acompañante?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Si tienes pareja, te hemos invitado y no te hemos dicho na malo de ella, adelante comandante.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" onclick="toggleFaq(this)">
+            ¿Habrá transporte organizado?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Organizaremos un servicio de autobús desde el centro de Granada para ir y volver. Los detalles exactos de las ubicaciones y de los horarios os llegarán por correo próximamente.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" onclick="toggleFaq(this)">
+            ¿Qué debo llevar o cómo vestir?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Elegantes ya sois. Venid cómodos, alegres, con ganas de comer y pasar un gran día. La celebración tendrá lugar al aire libre en un jardín y patio andaluz, por lo que sí recomendamos especialmente calzado cómodo para caminar sobre césped y adoquines.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" onclick="toggleFaq(this)">
+            ¿Hay hoteles recomendados cerca?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Sí. Os recomendamos el Parador de Granada (dentro de la Alhambra), Hotel Alhambra Palace, o varios carmen-hoteles boutique en el Albaicín. Reservad con antelación ya que octubre puede tener bastante demanda en Granada.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" onclick="toggleFaq(this)">
+            ¿A qué hora debo llegar?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Un tipo decía, "Un mago nunca llega tarde, Frodo Bolsón, ni pronto; llega exactamente cuando se lo propone"... pues eso, te proponemos que llegues unos 20 minutos antes de la ceremonia.
+              Soy el novio y también quiero que me veáis llegar, que para un día que puedo pedir... eah, po pido.
+              PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button type="button" class="faq-question" onclick="toggleFaq(this)">
+            ¿Cómo confirmo mi asistencia o la cancelo?
+            <span class="faq-chevron">▾</span>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              Puedes confirmar o anular tu asistencia a través del formulario de Google que encontrarás en la sección "¿Nos acompañas?". La fecha límite para confirmaciones es el 01 de septiembre de 2026. Si necesitas cambiar algo después, escríbenos directamente.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -1258,17 +1165,16 @@ PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
   <p>04 de Octubre de 2026 · Granada, España</p>
 </footer>
 
-
 <!-- MODAL BIZUM -->
 <div class="modal-overlay" id="modalBizum">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal('bizum')">×</button>
+    <button type="button" class="modal-close" aria-label="Cerrar ventana de Bizum" onclick="closeModal('bizum')">×</button>
     <h3>Bizum</h3>
     <p>Envía tu aportación directamente al número de Bizum de los novios.</p>
     <div class="account-box">
       <p style="margin-bottom:4px; font-size:0.72rem; color:var(--text-light); letter-spacing:0.1em; text-transform:uppercase;">Número de Bizum</p>
       <p><strong>+34 600 000 000</strong> — Sergio Martin</p>
-      <button class="copy-btn" onclick="copyText('+34600000000', this)">Copiar número</button>
+      <button type="button" class="copy-btn" onclick="copyText('+34600000000', this)">Copiar número</button>
     </div>
     <p style="font-size:0.8rem; margin:0;">Incluye tu nombre en el concepto para que sepamos de quién es. ¡Gracias!</p>
   </div>
@@ -1277,7 +1183,7 @@ PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
 <!-- MODAL TRANSFERENCIA -->
 <div class="modal-overlay" id="modalTransferencia">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal('transferencia')">×</button>
+    <button type="button" class="modal-close" aria-label="Cerrar ventana de transferencia" onclick="closeModal('transferencia')">×</button>
     <h3>Transferencia bancaria</h3>
     <p>Realiza una transferencia con los siguientes datos. Incluye tu nombre en el concepto.</p>
     <div class="account-box">
@@ -1285,16 +1191,14 @@ PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
       <p style="margin-bottom:14px;"><strong>Rosa Folgoso Bullejos</strong></p>
       <p style="margin-bottom: 6px; font-size:0.72rem; color:var(--text-light); letter-spacing:0.1em; text-transform:uppercase;">IBAN</p>
       <p><strong>ES12 9999 9999 9999 9999 9999</strong></p>
-      <button class="copy-btn" onclick="copyText('ES12345678901234567890​12', this)">Copiar IBAN</button>
+      <button type="button" class="copy-btn" onclick="copyText('ES1234567890123456789012', this)">Copiar IBAN</button>
     </div>
     <p style="font-size:0.8rem; margin:0; color:var(--text-light);">Concepto: "Fiesta Rosa y Sergio — Tu nombre"</p>
   </div>
 </div>
 
-
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
-
 
 <script>
   // ── SONGS ──
@@ -1311,13 +1215,13 @@ PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
       return;
     }
     list.innerHTML = songs.map((s, i) => `
-      <div class="song-item" style="animation-delay:${i*0.05}s">
-        <div class="song-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="song-item" style="animation-delay:${i * 0.05}s">
+        <div class="song-num">${String(i + 1).padStart(2, '0')}</div>
         <div class="song-info">
           <strong>${escHtml(s.title)}</strong>
           <span>${escHtml(s.artist)}</span>
         </div>
-        <button class="song-delete" onclick="removeSong(${i})" title="Eliminar">✕</button>
+        <button type="button" class="song-delete" aria-label="Eliminar canción" onclick="removeSong(${i})" title="Eliminar">✕</button>
       </div>
     `).join('');
   }
@@ -1325,7 +1229,12 @@ PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
   function addSong() {
     const title = document.getElementById('songTitle').value.trim();
     const artist = document.getElementById('songArtist').value.trim();
-    if (!title) { showToast('Escribe el título de la canción'); return; }
+
+    if (!title) {
+      showToast('Escribe el título de la canción');
+      return;
+    }
+
     songs.push({ title, artist: artist || 'Desconocido' });
     document.getElementById('songTitle').value = '';
     document.getElementById('songArtist').value = '';
@@ -1338,8 +1247,19 @@ PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
     renderSongs();
   }
 
-  document.getElementById('songTitle').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addSong(); } });
-  document.getElementById('songArtist').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addSong(); } });
+  document.getElementById('songTitle').addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      addSong();
+    }
+  });
+
+  document.getElementById('songArtist').addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      addSong();
+    }
+  });
 
   renderSongs();
 
@@ -1356,12 +1276,28 @@ PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
     document.getElementById('modal' + type.charAt(0).toUpperCase() + type.slice(1)).classList.add('active');
     document.body.style.overflow = 'hidden';
   }
+
   function closeModal(type) {
     document.getElementById('modal' + type.charAt(0).toUpperCase() + type.slice(1)).classList.remove('active');
     document.body.style.overflow = '';
   }
+
   document.querySelectorAll('.modal-overlay').forEach(m => {
-    m.addEventListener('click', e => { if (e.target === m) { m.classList.remove('active'); document.body.style.overflow = ''; } });
+    m.addEventListener('click', e => {
+      if (e.target === m) {
+        m.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+        modal.classList.remove('active');
+      });
+      document.body.style.overflow = '';
+    }
   });
 
   // ── COPY ──
@@ -1369,18 +1305,11 @@ PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
     navigator.clipboard.writeText(text).then(() => {
       btn.textContent = '✓ Copiado';
       btn.classList.add('copied');
-      setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+      setTimeout(() => {
+        btn.textContent = 'Copiar';
+        btn.classList.remove('copied');
+      }, 2000);
     });
-  }
-
-  // ── RSVP ──
-  function submitRSVP(e) {
-    e.preventDefault();
-    const nombre = document.getElementById('nombre').value;
-    const asistencia = document.querySelector('input[name="asistencia"]:checked');
-    if (!asistencia) { showToast('Por favor indica si asistirás'); return; }
-    showToast(`¡Gracias ${nombre}! Tu confirmación ha sido enviada 💌`);
-    e.target.reset();
   }
 
   // ── TOAST ──
@@ -1393,7 +1322,12 @@ PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
 
   // ── HELPERS ──
   function escHtml(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   // ── SCROLL REVEAL ──
@@ -1415,5 +1349,3 @@ PD: Soy la novia, la finca estará muy bonica, aprovechad para unos selfies.
 </script>
 </body>
 </html>
-
-
