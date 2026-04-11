@@ -815,7 +815,16 @@
 
   .toast.show { transform: translateX(-50%) translateY(0); }
 
+  /* ── MINI CTA MÓVIL ── */
+  .mobile-rsvp-bar {
+    display: none;
+  }
+
   @media (max-width: 768px) {
+    body {
+      padding-bottom: 92px;
+    }
+
     nav {
       padding: 14px 16px;
       flex-direction: column;
@@ -838,6 +847,13 @@
 
     .nav-links a {
       font-size: 0.65rem;
+    }
+
+    #hero {
+      min-height: 100svh;
+      background-size: contain;
+      background-position: center top;
+      background-color: var(--cream);
     }
 
     .venue-grid { grid-template-columns: 1fr; }
@@ -866,6 +882,35 @@
 
     .hero-scroll {
       bottom: 28px;
+    }
+
+    .mobile-rsvp-bar {
+      display: block;
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      z-index: 150;
+    }
+
+    .mobile-rsvp-bar a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      background: var(--terracotta);
+      color: var(--white);
+      padding: 14px 18px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 30px rgba(44,31,23,0.22);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .mobile-rsvp-bar a:hover {
+      background: var(--terracotta-light);
+      transform: translateY(-2px);
     }
   }
 </style>
@@ -1199,6 +1244,17 @@
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
+
+<!-- MINI CTA MÓVIL -->
+<div class="mobile-rsvp-bar">
+  <a
+    href="https://docs.google.com/forms/d/e/1FAIpQLSfy7xAhVTnxhPvpEcUcvCg55FbhDhqckyePd0fMB4yeapI9mQ/viewform"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Confirmar asistencia →
+  </a>
+</div>
 
 <script>
   // ── SONGS ──
