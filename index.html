@@ -93,6 +93,9 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+  .hero-mobile-picture {
+  display: none;
+  }
 
   #hero::before {
     content: "";
@@ -816,82 +819,81 @@
   .toast.show { transform: translateX(-50%) translateY(0); }
 
   @media (max-width: 768px) {
-     #hero {
-    min-height: calc(100svh - 118px);
-    background-image: url('encabezadoMovil.jpg');
-    background-size: contain;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-color: var(--cream);
-    justify-content: flex-start;
+  nav {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a {
+    font-size: 0.65rem;
+  }
+
+  #hero {
+    min-height: auto;
+    display: block;
+    padding: 0;
+    background: var(--cream);
+    overflow: visible;
   }
 
   #hero::before,
   .hero-bg,
   .hero-ornament,
-  .hero-content {
+  .hero-content,
+  .hero-scroll {
     display: none;
   }
 
-  .hero-scroll {
-    bottom: 28px;
-    color: rgba(255,255,255,0.9);
+  .hero-mobile-picture {
+    display: block;
+    width: 100%;
   }
-    
-    nav {
-      padding: 14px 16px;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-    }
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      width: 100%;
-      padding-bottom: 6px;
-      scrollbar-width: none;
-    }
-
-    .nav-links::-webkit-scrollbar {
-      display: none;
-    }
-
-    .nav-links a {
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      white-space: nowrap;
-    }
-
-    .venue-grid { grid-template-columns: 1fr; }
-    .aport-grid { grid-template-columns: 1fr; }
-    .song-add-form { grid-template-columns: 1fr; }
-
-    .song-add-form input:first-child {
-      border-radius: 2px 2px 0 0;
-      border-right: 1px solid var(--sand);
-      border-bottom: none;
-    }
-
-    .song-add-form input:nth-child(2) {
-      border-bottom: none;
-      border-right: 1px solid var(--sand);
-    }
-
-    .song-add-form button {
-      border-radius: 0 0 2px 2px;
-      padding: 16px;
-    }
-
-    .modal { padding: 36px 24px; }
-    .rsvp-card { padding: 36px 24px; }
-    section { padding: 72px 20px; scroll-margin-top: 110px; }
-
-    .hero-scroll {
-      bottom: 28px;
-    }
+  .hero-mobile-picture img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
+
+  .venue-grid { grid-template-columns: 1fr; }
+  .aport-grid { grid-template-columns: 1fr; }
+  .song-add-form { grid-template-columns: 1fr; }
+
+  .song-add-form input:first-child {
+    border-radius: 2px 2px 0 0;
+    border-right: 1px solid var(--sand);
+    border-bottom: none;
+  }
+
+  .song-add-form input:nth-child(2) {
+    border-bottom: none;
+    border-right: 1px solid var(--sand);
+  }
+
+  .song-add-form button {
+    border-radius: 0 0 2px 2px;
+    padding: 16px;
+  }
+
+  .modal { padding: 36px 24px; }
+  .rsvp-card { padding: 36px 24px; }
+  section { padding: 72px 20px; scroll-margin-top: 110px; }
+}
 </style>
 </head>
 <body>
@@ -912,27 +914,32 @@
 <main>
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-ornament"></div>
-    <div class="hero-ornament"></div>
-    <div class="hero-ornament"></div>
+  <picture class="hero-mobile-picture">
+    <source media="(max-width: 768px)" srcset="encabezadoMovil.jpg">
+    <img src="encabezadoInvitacion.jpg" alt="Rosa y Sergio — Invitación de boda">
+  </picture>
 
-    <div class="hero-content">
-      <p class="hero-date">04 · Octubre · 2026</p>
-      <h1 class="hero-names">
-        Rosa
-        <span class="hero-ampersand">&</span>
-        Sergio
-      </h1>
-      <p class="hero-subtitle">Granada · España</p>
-      <p class="hero-subtitle">¡Nos casamos!</p>
-    </div>
+  <div class="hero-bg"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-ornament"></div>
 
-    <div class="hero-scroll">
-      <div class="scroll-line"></div>
-      Desplazar
-    </div>
-  </section>
+  <div class="hero-content">
+    <p class="hero-date">04 · Octubre · 2026</p>
+    <h1 class="hero-names">
+      Rosa
+      <span class="hero-ampersand">&</span>
+      Sergio
+    </h1>
+    <p class="hero-subtitle">Granada · España</p>
+    <p class="hero-subtitle">¡Nos casamos!</p>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Desplazar
+  </div>
+</section>
 
   <!-- LUGAR -->
   <section id="lugar">
