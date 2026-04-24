@@ -314,6 +314,49 @@
     line-height: 1.6;
   }
 
+  /* ── FOTO PAREJA PREMIUM ── */
+.photo-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 360px;
+  box-shadow: 0 25px 70px rgba(44,31,23,0.18);
+  cursor: pointer;
+}
+
+/* Imagen */
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+/* Overlay elegante */
+.photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(44,31,23,0.15),
+    rgba(44,31,23,0.35)
+  );
+  opacity: 0.9;
+  transition: opacity 0.5s ease;
+}
+
+/* Efecto hover (solo escritorio) */
+@media (hover: hover) {
+  .photo-card:hover img {
+    transform: scale(1.06);
+  }
+
+  .photo-card:hover .photo-overlay {
+    opacity: 0.6;
+  }
+}
+
   /* ── MAP ── */
   #mapa { background: var(--sand); }
 
@@ -823,6 +866,10 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+
+  .photo-card {
+  min-height: 260px;
+}
     
     nav {
       padding: 14px 16px;
@@ -944,7 +991,7 @@
             </div>
           </div>
           <div class="venue-detail">
-            <div class="venue-icon">🌡️</div>
+            <div class="venue-icon">💃🏻</div>
             <div class="venue-detail-text">
               <h4>Dress code</h4>
               <p>Inexistente. Si el tiempo nos lo permite, el evento será al aire libre. Se recomienda calzado cómodo para el jardín y patio.</p>
@@ -952,12 +999,9 @@
           </div>
         </div>
 
-        <div>
-          <div style="background: var(--sand); border-radius: 4px; overflow: hidden; height: 100%; min-height: 360px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; padding: 40px; text-align: center;">
-            <div style="font-size: 3rem;">🍇</div>
-            <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; color: var(--dark);">“Pelea por lo que quieres y no desesperes si algo no anda bien, hoy puede ser un gran día y mañana también.” </p>
-            <p style="font-size: 0.78rem; color: var(--text-light); letter-spacing: 0.1em;">-Joan Manuel Serrat-</p>
-          </div>
+        <div class="photo-card">
+          <img src="AcuarelaNosotros.jpg" alt="Rosa y Sergio">
+          <div class="photo-overlay"></div>
         </div>
       </div>
     </div>
