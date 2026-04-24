@@ -815,16 +815,7 @@
 
   .toast.show { transform: translateX(-50%) translateY(0); }
 
-  /* ── MINI CTA MÓVIL ── */
-  .mobile-rsvp-bar {
-    display: none;
-  }
-
   @media (max-width: 768px) {
-    body {
-      padding-bottom: 92px;
-    }
-
     nav {
       padding: 14px 16px;
       flex-direction: column;
@@ -847,13 +838,6 @@
 
     .nav-links a {
       font-size: 0.65rem;
-    }
-
-    #hero {
-      min-height: 100svh;
-      background-size: contain;
-      background-position: center top;
-      background-color: var(--cream);
     }
 
     .venue-grid { grid-template-columns: 1fr; }
@@ -882,35 +866,6 @@
 
     .hero-scroll {
       bottom: 28px;
-    }
-
-    .mobile-rsvp-bar {
-      display: block;
-      position: fixed;
-      left: 16px;
-      right: 16px;
-      bottom: 16px;
-      z-index: 150;
-    }
-
-    .mobile-rsvp-bar a {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      background: var(--terracotta);
-      color: var(--white);
-      padding: 14px 18px;
-      border-radius: 4px;
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      box-shadow: 0 10px 30px rgba(44,31,23,0.22);
-      transition: background 0.3s, transform 0.3s;
-    }
-
-    .mobile-rsvp-bar a:hover {
-      background: var(--terracotta-light);
-      transform: translateY(-2px);
     }
   }
 </style>
@@ -945,7 +900,8 @@
         <span class="hero-ampersand">&</span>
         Sergio
       </h1>
-      <p class="hero-subtitle">¡Nos casamos! · Granada · España</p>
+      <p class="hero-subtitle">Granada · España</p>
+      <p class="hero-subtitle">¡Nos casamos!</p>
     </div>
 
     <div class="hero-scroll">
@@ -990,9 +946,9 @@
 
         <div>
           <div style="background: var(--sand); border-radius: 4px; overflow: hidden; height: 100%; min-height: 360px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; padding: 40px; text-align: center;">
-            <div style="font-size: 3rem;">🌺</div>
-            <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; color: var(--dark);">"El amor no se mira, es lo que nos hace ver"</p>
-            <p style="font-size: 0.78rem; color: var(--text-light); letter-spacing: 0.1em;">— Antoine de Saint-Exupéry</p>
+            <div style="font-size: 3rem;">🍇</div>
+            <p style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; color: var(--dark);">“Pelea por lo que quieres y no desesperes si algo no anda bien, hoy puede ser un gran día y mañana también.” </p>
+            <p style="font-size: 0.78rem; color: var(--text-light); letter-spacing: 0.1em;">-Joan Manuel Serrat-</p>
           </div>
         </div>
       </div>
@@ -1245,23 +1201,12 @@
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- MINI CTA MÓVIL -->
-<div class="mobile-rsvp-bar">
-  <a
-    href="https://docs.google.com/forms/d/e/1FAIpQLSfy7xAhVTnxhPvpEcUcvCg55FbhDhqckyePd0fMB4yeapI9mQ/viewform"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Confirmar asistencia →
-  </a>
-</div>
-
 <script>
   // ── SONGS ──
   let songs = [
-    { title: "Perfect", artist: "Ed Sheeran" },
-    { title: "Can't Help Falling in Love", artist: "Elvis Presley" },
-    { title: "La Vie en Rose", artist: "Édith Piaf" },
+    { title: "I'll Survive", artist: "Gloria Gaynor" },
+    { title: "La Morocha", artist: "BM y Luck Ra" },
+    { title: "Crystallized", artist: "John Summit feat Inéz" },
   ];
 
   function renderSongs() {
