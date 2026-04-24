@@ -816,26 +816,12 @@
   .toast.show { transform: translateX(-50%) translateY(0); }
 
   @media (max-width: 768px) {
-    #hero {
-    min-height: calc(100svh - 118px);
+     #hero {
+    min-height: 100svh;
     background-image: url('encabezadoMovil.jpg');
-    background-size: contain;
-    background-position: center top;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    background-color: var(--cream);
-    justify-content: flex-start;
-  }
-
-  #hero::before,
-  .hero-bg,
-  .hero-ornament,
-  .hero-content {
-    display: none;
-  }
-
-  .hero-scroll {
-    bottom: 28px;
-    color: rgba(255,255,255,0.9);
   }
     
     nav {
