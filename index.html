@@ -259,6 +259,20 @@
     nav { padding: 14px 16px; flex-direction: column; align-items: flex-start; gap: 10px; }
     .nav-links { gap: 14px; overflow-x: auto; width: 100%; padding-bottom: 4px; scrollbar-width: none; }
     .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links-wrap { position: relative; width: 100%; }
+    .nav-links-wrap::after {
+  content: '›';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: var(--terracotta);
+  pointer-events: none;
+  padding: 0 4px;
+  background: linear-gradient(to right, transparent, rgba(249,244,238,0.95) 40%);
+  padding-left: 20px;
+}
     .nav-links a { font-size: 0.65rem; }
     .venue-grid { grid-template-columns: 1fr; }
     .aport-grid { grid-template-columns: 1fr; }
@@ -434,6 +448,7 @@
 
 <nav>
   <div class="nav-logo">Rosa & Sergio</div>
+  <div class=""nav-links-wrap">
   <ul class="nav-links">
     <li><a href="#lugar">El lugar</a></li>
     <li><a href="#mapa">Cómo llegar</a></li>
@@ -442,6 +457,7 @@
     <li><a href="#rsvp">¿Nos acompañas?</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
+  </div>
 </nav>
 
 <main>
